@@ -16,7 +16,7 @@ En simpel, framework-fri theme switcher, der kan drop-in-integreres på andre si
 
 - Dropdown-menu til temavalg (light/dark som standard; retro kan tilføjes ved init)
 - Tema-persistens via localStorage
-- Ingen FOUC: data-theme-ready sættes efter init i JS; base.css håndterer skjul/vis
+- Ingen FOUC (Flash of Unstyled Content): data-theme-ready sættes efter init i JS; base.css håndterer skjul/vis
 - Moderne CSS: bruger CSS nesting for overskuelige tema-tweaks
 - Simpelt API: initStyleSwitcher, setTheme, getTheme, onChange
 
@@ -105,11 +105,3 @@ Callback funktionen modtager temanavnet som parameter.
 
 - Nogle linters kan advare om font-family fallback ved brug af CSS-variabler; det er ufarligt
 - SVG-attribut-advarsler i demoen påvirker ikke funktionaliteten
-
-## Browser-støtte
-
-Kompatibel med moderne browsere (Chrome, Firefox, Safari, Edge).
-
-## Licens
-
-Fri til brug i personlige og kommercielle projekter.
