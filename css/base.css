@@ -1,0 +1,288 @@
+/*
+ * base.css
+ * Theme-agnostic foundation: layout, typography, generic components, and common button styles.
+ * Notes:
+ * - CSS variables come from themes.css (.theme-*) applied to <html>.
+ * - Some linters may warn about font-family fallbacks when using CSS variables; safe to ignore here.
+ */
+
+/**
+ * Base styles for the Style Switcher demo
+ * Uses CSS variables defined in themes.css
+ */
+
+/* Mini CSS reset and baseline */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Prevent FOUC (Flash of Unstyled Content) with theme initialization */
+body {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+[data-theme-ready="1"] body {
+    opacity: 1;
+}
+
+/* Base typography and layout using CSS variables */
+body {
+    background-color: var(--bg, #fafafa);
+    color: var(--fg, #1f2937);
+    font-family: var(--font-ui, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif);
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3 {
+    margin-bottom: 1rem;
+    color: var(--fg);
+}
+
+/* Top bar styling */
+.top-bar {
+    background-color: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1rem;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.site-title h1 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.theme-switcher-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Content area styling */
+.content-area {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+
+    @media (max-width: 768px) {
+        padding: 1.5rem;
+    }
+
+    @media (max-width: 480px) {
+        padding: 1rem;
+    }
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--fg);
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Ensure anchor-based buttons look like real buttons */
+.button,
+.button:hover {
+    text-decoration: none;
+}
+
+/* Form elements */
+select, input {
+    font-family: var(--font-ui, system-ui, sans-serif);
+    border-radius: var(--radius, 0.25rem);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    background-color: var(--card);
+    color: var(--fg);
+    transition: all 0.2s;
+}
+
+select {
+    padding-right: 2rem;
+    appearance: none;
+}
+
+/* Responsive styles for top bar and theme switcher */
+@media (max-width: 768px) {
+    .top-bar-content {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+
+    .site-title h1 {
+        font-size: 1.1rem;
+    }
+
+    .theme-switcher-wrapper {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+}
+
+/* Common button styles (theme-agnostic) */
+button, .button {
+    background-color: var(--accent);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius, 0.25rem);
+    transition: all 0.3s ease;
+}
+
+button:hover, .button:hover {
+    opacity: 0.9;
+}
+
+button:focus, select:focus, input:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Demo components */
+.demo-section {
+    margin: 0;
+}
+
+.status {
+    display: inline-block;
+    margin: 1rem 0;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius, 0.25rem);
+    background-color: var(--card);
+    border: 1px solid var(--border);
+}
+
+/* Status element in the top bar theme switcher */
+.theme-switcher-wrapper .status {
+    margin: 0;
+    font-size: 0.8rem;
+    padding: 0.15rem 0.4rem;
+    background-color: var(--bg);
+}
+
+/* Example navigation links (between title and switcher) */
+.example-links {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0 1rem;
+}
+
+.example-links a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.example-links a:hover {
+    color: var(--fg);
+    background-color: var(--card);
+    border-color: var(--border);
+    text-decoration: none;
+}
+
+/* Card component */
+.card {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius, 0.25rem);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: var(--shadow, 0 2px 4px rgba(0, 0, 0, 0.1));
+    transition: all 0.3s ease;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.card-text {
+    color: var(--muted);
+    margin-bottom: 1rem;
+}
+
+/* Badge component */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius, 0.25rem);
+    background-color: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+/* Tag component */
+.tag {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius, 0.25rem);
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-right: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+/* UI component group */
+.component-group {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+    transition: all 0.3s ease;
+}
+
+.input-group {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    align-items: center;
+}

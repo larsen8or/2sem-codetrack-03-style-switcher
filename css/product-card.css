@@ -1,0 +1,529 @@
+/**
+ * product-card.css
+ * Styles for the product card component used in the theme switcher demo
+ * All styles are grouped by theme rather than by component
+ */
+
+/*----------------------------------------------
+ * DEFAULT THEME (LIGHT)
+ *----------------------------------------------*/
+/* Product Card */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius, 0.25rem);
+  overflow: hidden;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow), 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Image */
+.product-image {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  background-color: var(--border);
+  transition: all 0.3s ease;
+}
+
+/* Product Content */
+.product-content {
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Product Title */
+.product-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Product Description */
+.product-description {
+  color: var(--muted);
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+}
+
+/* Rating Component */
+.rating {
+  display: inline-flex;
+  align-items: center;
+  margin: 0.5rem 0;
+  transition: all 0.3s ease;
+}
+
+.stars {
+  display: flex;
+  color: var(--accent);
+}
+
+.star {
+  width: 1rem;
+  height: 1rem;
+}
+
+.reviews-count {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-left: 0.5rem;
+}
+
+/* Price Component */
+.price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--fg);
+  margin: 0.75rem 0;
+  transition: all 0.3s ease;
+}
+
+.price .original {
+  text-decoration: line-through;
+  color: var(--muted);
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+.price .discount {
+  font-size: 0.875rem;
+  color: #e53e3e;
+  margin-left: 0.5rem;
+}
+
+/* Variant Selectors */
+.variant-selectors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  transition: all 0.3s ease;
+}
+
+.variant-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  width: 100%;
+  margin-bottom: 0.25rem;
+}
+
+/* Color Selectors */
+.color-selector {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid var(--border);
+}
+
+.color-selector.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
+
+/* Size Selectors */
+.size-selector {
+  display: inline-block;
+  min-width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius, 0.25rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.size-selector:hover {
+  border-color: var(--muted);
+}
+
+.size-selector.active {
+  background-color: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* Product Meta */
+.product-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.product-meta .left {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.product-meta .right {
+  display: flex;
+  align-items: center;
+}
+
+/* Stock Indicators */
+.stock {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius, 0.25rem);
+  transition: all 0.3s ease;
+}
+
+.stock.in-stock {
+  background-color: rgba(72, 187, 120, 0.1);
+  color: #48bb78;
+}
+
+.stock.low-stock {
+  background-color: rgba(237, 137, 54, 0.1);
+  color: #ed8936;
+}
+
+.stock.out-of-stock {
+  background-color: rgba(229, 62, 62, 0.1);
+  color: #e53e3e;
+}
+
+/*----------------------------------------------
+ * DARK THEME
+ *----------------------------------------------*/
+.theme-dark {
+  .product-card {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-areas: "image content";
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  }
+
+  .product-image {
+    grid-area: image;
+    width: 100%;
+    height: 100%;
+    min-height: 350px;
+    object-fit: cover;
+    border-right: 1px solid var(--border);
+  }
+
+  .product-content {
+    grid-area: content;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .component-group:first-of-type {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .component-group:nth-of-type(2) {
+      display: flex;
+      gap: 1rem;
+      margin-top: auto;
+    }
+  }
+
+  .product-title {
+    width: 100%;
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+    color: var(--accent);
+  }
+
+  .product-description {
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .rating {
+    margin: 0;
+  }
+
+  .stars {
+    color: var(--accent);
+  }
+
+  .star {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+
+  .price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    background-color: rgba(124, 58, 237, 0.1);
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    display: inline-block;
+    
+    .original {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-left: 0.75rem;
+      font-weight: normal;
+    }
+  }
+
+  .variant-selectors {
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .variant-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-right: 0.5rem;
+    font-weight: 500;
+  }
+
+  button, 
+  .button {
+    padding: 0.75rem 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    border-radius: 0.3rem;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .product-meta {
+    background-color: rgba(0, 0, 0, 0.2);
+    margin: 1rem -1.5rem -1.5rem;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    border-top: none;
+    
+    .left {
+      color: var(--muted);
+    }
+  }
+
+  .stock {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 1rem;
+    
+    &.in-stock {
+      background-color: rgba(72, 187, 120, 0.2);
+      color: #48bb78;
+    }
+  }
+
+  .badge {
+    background-color: var(--accent);
+    color: white;
+    padding: 0.35rem 0.7rem;
+    border-radius: 0.5rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .tag {
+    border-radius: 1rem;
+    padding: 0.15rem 0.6rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+  }
+
+  /* Responsive adjustments for dark theme */
+    @media (max-width: 640px) {
+        .product-card {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr;
+            grid-template-areas: 
+                "image"
+                "content";
+        }
+        
+        .product-image {
+            min-height: 200px;
+            border-right: none;
+            border-bottom: 1px solid var(--border);
+        }
+    }
+}
+
+
+
+/*----------------------------------------------
+ * RETRO THEME
+ *----------------------------------------------*/
+.theme-retro {
+  .product-card {
+    flex-direction: column-reverse;
+    border-width: 3px;
+    transform: rotate(-1deg);
+  }
+
+  .product-image {
+    filter: sepia(0.6);
+    aspect-ratio: 2 / 1;
+    border-top: 3px dashed var(--border);
+  }
+
+  .product-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .product-title {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.1rem;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.5rem;
+  }
+
+  .product-description {
+    font-family: var(--font-ui);
+    font-style: italic;
+    text-align: center;
+    border-left: 3px solid var(--border);
+    border-right: 3px solid var(--border);
+    padding: 0.5rem;
+    margin: 0.75rem 0;
+  }
+
+  .rating {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stars {
+    margin-bottom: 0.25rem;
+  }
+
+  .star {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .price {
+    text-align: center;
+    font-family: var(--font-ui);
+    border: 2px dashed var(--border);
+    padding: 0.5rem;
+    transform: rotate(-2deg);
+    width: fit-content;
+    margin: 1rem auto;
+    
+    .original {
+      font-style: italic;
+    }
+    
+    .discount {
+      background-color: var(--accent);
+      color: white;
+      padding: 0.1rem 0.3rem;
+      display: inline-block;
+      transform: rotate(3deg) translateY(-5px);
+    }
+  }
+
+  .variant-selectors {
+    justify-content: center;
+    border: 1px dashed var(--border);
+    padding: 0.75rem;
+    margin: 0.75rem 0;
+  }
+
+  .variant-label {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.7rem;
+  }
+
+  button, 
+  .button {
+    border-radius: 0;
+    border: 2px solid var(--fg);
+    box-shadow: 3px 3px 0 var(--fg);
+    transform: rotate(-1deg);
+    font-family: var(--font-ui);
+    padding: 0.4rem 1rem;
+    
+    &:hover {
+      transform: rotate(0) translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--fg);
+      opacity: 1;
+    }
+  }
+
+  .product-meta {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    border-top: 2px dashed var(--border);
+    padding-top: 0.75rem;
+  }
+
+  .stock {
+    border: 1px solid currentColor;
+    transform: rotate(1deg);
+    font-family: var(--font-ui);
+    text-align: center;
+    
+    &.in-stock {
+      background-color: transparent;
+      border: 2px dashed #48bb78;
+    }
+  }
+
+  .badge {
+    transform: rotate(2deg);
+    border-radius: 0;
+    border: 2px solid white;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+    font-family: var(--font-ui);
+  }
+
+  .tag {
+    border-radius: 0;
+    transform: rotate(-1deg);
+    border: 1px dashed var(--border);
+    font-family: var(--font-ui);
+  }
+}
+
+

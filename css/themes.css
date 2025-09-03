@@ -1,0 +1,143 @@
+/**
+ * Contains theme definitions for the Style Switcher
+ * Each theme defines a set of CSS variables that are used in base.css
+ */
+
+/* Light theme (default) */
+.theme-light {
+    --bg: #fafafa;
+    --fg: #1f2937;
+    --muted: #6b7280;
+    --accent: #2563eb;
+    --accent-rgb: 37, 99, 235;
+    --card: #ffffff;
+    --border: #e5e7eb;
+    --font-ui: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --radius: 0.25rem;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    /* Button customizations */
+
+    button:hover,
+    .button:hover {
+        transform: translateY(-1px);
+    }
+
+    /* Tag customizations */
+
+    .tag:hover {
+        border-color: var(--accent);
+    }
+}
+
+/* Dark theme */
+.theme-dark {
+    --bg: #0b1020;
+    --fg: #e5e7eb;
+    --muted: #94a3b8;
+    --accent: #7c3aed;
+    --accent-rgb: 124, 58, 237;
+    --card: #111827;
+    --border: #1f2937;
+    --font-ui: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --radius: 0.25rem;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+    /* Button customizations */
+
+    button, .button {
+        padding: 0.7rem 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 0.8rem;
+    }
+
+    /* Badge customizations */
+
+    .badge {
+        padding: 0.35rem 0.7rem;
+        border-radius: 0.5rem;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Tag customizations */
+
+    .tag {
+        border-radius: 1rem;
+        padding: 0.15rem 0.6rem;
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Component group tweaks */
+
+    .component-group {
+        justify-content: space-between;
+        margin: 0.75rem 0;
+    }
+
+    .product-card {
+        .component-group:first-of-type {
+            order: -2;
+            display: flex;
+        }
+    }
+}
+
+/* Retro theme */
+.theme-retro {
+    --bg: #f7f1e3;
+    --fg: #2d2a26;
+    --muted: #6d655d;
+    --accent: #ff6b6b;
+    --accent-rgb: 255, 107, 107;
+    --card: #fffaf0;
+    --border: #e5dcc6;
+    --font-ui: "Courier New", ui-monospace, monospace;
+    --radius: 0rem;
+    --shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+
+    /* Button customizations */
+
+    button, .button {
+        border: 2px solid var(--fg);
+        border-radius: 0;
+        box-shadow: 3px 3px 0 var(--fg);
+        transform: rotate(-1deg);
+        font-family: var(--font-ui, system-ui, sans-serif);
+        padding: 0.4rem 1rem;
+    }
+
+    button:hover, .button:hover {
+        transform: rotate(0) translate(2px, 2px);
+        box-shadow: 1px 1px 0 var(--fg);
+        opacity: 1;
+    }
+
+    /* Badge customizations */
+
+    .badge {
+        transform: rotate(2deg);
+        border-radius: 0;
+        border: 2px solid white;
+        box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+        font-family: var(--font-ui, system-ui, sans-serif);
+    }
+
+    /* Tag customizations */
+
+    .tag {
+        border-radius: 0;
+        transform: rotate(-1deg);
+        border: 1px dashed var(--border);
+        font-family: var(--font-ui, system-ui, sans-serif);
+    }
+
+    /* Component group tweaks */
+
+    .component-group {
+        justify-content: center;
+        gap: 1rem;
+    }
+}
