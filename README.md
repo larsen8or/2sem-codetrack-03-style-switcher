@@ -1,10 +1,12 @@
 # Style Switcher Component
 
-En simpel, framework-fri theme switcher, der kan drop-in-integreres på andre sider. Koden er skrevet i moderne, ren HTML/CSS/JavaScript uden afhængigheder.
+En simpel, framework-fri theme switcher, der kan drop-in-integreres på andre sider. Koden er 
+skrevet i moderne, ren HTML/CSS/JavaScript uden afhængigheder.
 
 ## Struktur og filer
 
-- css/base.css: Tema-agnostiske basisstilarter (layout, komponent-rammer, knappers grundstil, fokus-tilstande)
+- css/base.css: Tema-agnostiske basisstilarter (layout, komponent-rammer, knappers grundstil, 
+fokus-tilstande)
 - css/themes.css: Tema-variabler og tema-specifikke tweaks via CSS nesting (light, dark, retro)
 - css/theme-switcher.css: Kun stilarter for selve tema-vælgeren (dropdown og container)
 - js/style-switcher.js: Simpelt, globalt API til at vælge/lagre tema
@@ -16,7 +18,8 @@ En simpel, framework-fri theme switcher, der kan drop-in-integreres på andre si
 
 - Dropdown-menu til temavalg (light/dark som standard; retro kan tilføjes ved init)
 - Tema-persistens via localStorage
-- Ingen FOUC (Flash of Unstyled Content): data-theme-ready sættes efter init i JS; base.css håndterer skjul/vis
+- Ingen FOUC (Flash of Unstyled Content): data-theme-ready sættes efter init i JS; base.css 
+håndterer skjul/vis
 - Moderne CSS: bruger CSS nesting for overskuelige tema-tweaks
 - Simpelt API: initStyleSwitcher, setTheme, getTheme, onChange
 
@@ -65,10 +68,12 @@ Standardtemaer er kun `light` og `dark`. Tilføj `retro` (eller andre) via `them
 Initialiserer StyleSwitcher komponenten med de angivne indstillinger.
 
 **Options:**
-- `target` (Element, default: `document.documentElement`): Målelement som tema-klassen sættes på
+- `target` (Element, default: `document.documentElement`): Målelement som tema-klassen sættes 
+på
 - `key` (string, default: `'site-theme'`): localStorage nøgle til persistens
 - `defaultTheme` (string, default: `'light'`): Standard tema hvis intet er gemt
-- `themes` (array, default: `['light', 'dark']`): Liste over tilgængelige temaer. Tilføj fx `'retro'` her for at aktivere retro-temaet.
+- `themes` (array, default: `['light', 'dark']`): Liste over tilgængelige temaer. Tilføj fx 
+`'retro'` her for at aktivere retro-temaet.
 
 ### `getTheme()`
 

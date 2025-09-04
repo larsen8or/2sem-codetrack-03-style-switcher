@@ -45,16 +45,25 @@ const StyleSwitcher = {
      */
     current: 'light',
     /**
+     * Counter for theme changes.
+     * @type {number}
+     */
+    _changeCount: 0,
+    /**
      * localStorage key used to persist the theme.
      * @type {string}
      */
     key: 'site-theme',
     /**
-     * Element that receives theme-* classes (e.g., theme-light).
-     * document.documentElement is the <html> element.
+     * Element to apply the theme class to.
      * @type {Element}
      */
     target: document.documentElement,
+    /**
+     * List of theme change callbacks.
+     * @type {ThemeChangeCallback[]}
+     */
+    _callbacks: [],
     /**
      * Registered listeners that run on theme changes.
      * @type {ThemeChangeCallback[]}
@@ -146,8 +155,24 @@ const StyleSwitcher = {
      */
     setTheme(themeName) {
         if (!this.themes.includes(themeName)) {
-            console.warn(`Unknown theme: ${themeName}`);
+            console.warn(`Ukendt tema: ${themeName}`);
             return false;
+        }
+
+        // Only count actual theme changes, not initial load
+        if (this.current !== themeName) {
+            if (!this._changeCount) this._changeCount = 0;
+            this._changeCount++;
+
+            // Update the alert box if it exists
+            const alert = document.getElementById('themeAlert');
+            const alertMessage = document.getElementById('themeAlertMessage');
+            if (alert && alertMessage) {
+                alertMessage.textContent = `Temaet er blevet skiftet ${this._changeCount} gange`;
+                alert.style.display = 'block';
+                alert.style.opacity = '1';
+                // Removed auto-hide functionality
+            }
         }
 
         this.current = themeName;
@@ -160,20 +185,14 @@ const StyleSwitcher = {
             /* ignore */
         }
 
-        // Sync dropdown if present
+        // Update dropdown if it exists
         const select = document.getElementById('theme-select');
-        if (select && select.value !== themeName) {
+        if (select) {
             select.value = themeName;
         }
 
-        // Notify listeners (optional feature)
-        this.callbacks.forEach(function (fn) {
-            try {
-                fn(themeName);
-            } catch (_) {
-                /* ignore callback errors */
-            }
-        });
+        // Notify listeners
+        this._callbacks.forEach((cb) => cb(themeName));
 
         return true;
     },

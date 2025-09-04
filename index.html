@@ -11,6 +11,109 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/theme-switcher.css">
     <link rel="stylesheet" href="css/product-card.css">
+    <style>
+        /* Alert Box Styles */
+        .alert {
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 1px solid transparent;
+            border-radius: var(--radius, 0.25rem);
+            position: relative;
+            transition: all 0.3s ease;
+            font-family: var(--font-ui, system-ui, -apple-system, sans-serif);
+            max-width: 600px;
+            margin: 1rem auto;
+        }
+
+        .alert h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            color: inherit;
+        }
+
+        .alert p {
+            margin: 0.5rem 0 0;
+        }
+
+        .alert-close {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: transparent;
+            border: none;
+            font-size: 1.25rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            color: inherit;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+
+        .alert-close:hover {
+            opacity: 1;
+        }
+
+        /* Info Alert */
+        .alert-info {
+            background-color: rgba(var(--accent-rgb, 37, 99, 235), 0.1);
+            border-color: rgba(var(--accent-rgb, 37, 99, 235), 0.3);
+            color: var(--fg, #1f2937);
+        }
+
+        /* Success Alert */
+        .alert-success {
+            --success-color: 16, 185, 129;
+            background-color: rgba(var(--success-color), 0.1);
+            border-color: rgba(var(--success-color), 0.3);
+            color: var(--fg, #1f2937);
+        }
+
+        /* Warning Alert */
+        .alert-warning {
+            --warning-color: 245, 158, 11;
+            background-color: rgba(var(--warning-color), 0.1);
+            border-color: rgba(var(--warning-color), 0.3);
+            color: var(--fg, #1f2937);
+        }
+
+        /* Error Alert */
+        .alert-error {
+            --error-color: 239, 68, 68;
+            background-color: rgba(var(--error-color), 0.1);
+            border-color: rgba(var(--error-color), 0.3);
+            color: var(--fg, #1f2937);
+        }
+
+        /* Theme-specific overrides */
+        .theme-cyber .alert {
+            border-width: 1px;
+            border-style: solid;
+            box-shadow: 0 0 10px rgba(0, 199, 255, 0.2);
+        }
+
+        .theme-cyber .alert::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent, #00f7ff), transparent);
+        }
+
+        .theme-retro .alert {
+            border: 2px solid var(--border, #e5dcc6);
+            background-color: var(--card, #fffaf0);
+            box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-retro .alert-close {
+            border: 2px solid currentColor;
+            border-radius: 0;
+            padding: 0 0.5rem;
+        }
+    </style>
 </head>
 <body>
     <!-- Top bar for the style switcher -->
@@ -136,23 +239,82 @@
         </section>
     </main>
 
+    <!-- Alert Box Demo -->
+    <div class="alert alert-info" id="themeAlert">
+        <h3>Temaet er blevet ændret</h3>
+        <p id="themeAlertMessage">Temaet er blevet skiftet 0 gange</p>
+        <button class="alert-close">×</button>
+    </div>
+
     <!-- JavaScript -->
     <script src="js/style-switcher.js"></script>
     <script src="js/product-demo.js"></script>
     <script>
+    // Close button functionality
+    function setupCloseButtons() {
+        document.querySelectorAll('.alert-close').forEach(button => {
+            // Remove any existing click handlers to prevent duplicates
+            button.onclick = null;
+            
+            // Add new click handler
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const alert = this.closest('.alert');
+                if (alert) {
+                    alert.style.opacity = '0';
+                    setTimeout(() => {
+                        alert.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    }
+
+    // Initialize close buttons when DOM is loaded
+    document.addEventListener('DOMContentLoaded', setupCloseButtons);
+    
+    // Also set up close buttons after theme changes
+    StyleSwitcher.onChange(setupCloseButtons);
+    </script>
+    <script>
         // Initialize the style switcher with default options
         document.addEventListener('DOMContentLoaded', function () {
+            // Initialize theme change counter
+            let themeChangeCount = 0;
+            
+            // Initialize the style switcher
             StyleSwitcher.initStyleSwitcher({
                 target: document.documentElement,
                 key: 'site-theme',
                 defaultTheme: 'light',
-                themes: ['light', 'dark', 'retro'],
+                themes: ['light', 'dark', 'retro', 'cyber'],
             });
-
-            // Optional: Listen for theme changes
-            StyleSwitcher.onChange(function (themeName) {
-                console.log('Theme changed to:', themeName);
+            
+            // Single event listener for theme changes
+            StyleSwitcher.onChange(function(themeName) {
+                themeChangeCount++;
+                const alert = document.getElementById('themeAlert');
+                const alertMessage = document.getElementById('themeAlertMessage');
+                
+                if (alert && alertMessage) {
+                    // Update the message with the current count
+                    alertMessage.textContent = `Temaet er blevet skiftet ${themeChangeCount} gange`;
+                    
+                    // Make sure alert is visible and stays visible
+                    alert.style.display = 'block';
+                    alert.style.opacity = '1';
+                    
+                    // Log theme change for debugging
+                    console.log(`Theme changed to: ${themeName}, Total changes: ${themeChangeCount}`);
+                }
             });
+            
+            // Make sure the alert is visible on page load if not first visit
+            const alert = document.getElementById('themeAlert');
+            if (alert) {
+                alert.style.display = 'block';
+                alert.style.opacity = '1';
+            }
         });
     </script>
 </body>

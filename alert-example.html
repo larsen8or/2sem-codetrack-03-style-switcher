@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alert Boks Eksempel</title>
+    
+    <!-- CSS files -->
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/alert-box.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="site-title">
+                <h1>Alert Boks Eksempel</h1>
+            </div>
+            <nav class="example-links">
+                <a href="index.html">Tilbage til demo</a>
+            </nav>
+            <div class="theme-switcher-wrapper">
+                <div class="theme-switcher">
+                    <select id="theme-select" class="theme-select" aria-label="Vælg tema">
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="content-area">
+        <section class="demo-section">
+            <h2>Tilpasset Alert Boks</h2>
+            <p>Denne alert-boks bruger de samme tema-variabler som resten af siden.</p>
+            
+            <div class="alert alert-info">
+                <h3>OBS: Vigtig besked!</h3>
+                <p>Dette er en eksempel-alert, der automatisk skifter udseende efter det aktuelle tema.</p>
+                <button class="alert-close">×</button>
+            </div>
+
+            <div class="alert alert-success">
+                <h3>Succes!</h3>
+                <p>Din handling blev gennemført korrekt.</p>
+                <button class="alert-close">×</button>
+            </div>
+
+            <div class="alert alert-warning">
+                <h3>Advarsel!</h3>
+                <p>Denne handling kan ikke fortrydes.</p>
+                <button class="alert-close">×</button>
+            </div>
+
+            <div class="alert alert-error">
+                <h3>Fejl!</h3>
+                <p>Noget gik galt. Prøv igen senere.</p>
+                <button class="alert-close">×</button>
+            </div>
+
+            <button id="show-alert" class="btn">Vis tilfældig alert</button>
+        </section>
+    </main>
+
+    <script src="js/style-switcher.js"></script>
+    <script src="js/alert-demo.js"></script>
+    <script>
+        // Initialize the style switcher
+        document.addEventListener('DOMContentLoaded', function () {
+            StyleSwitcher.initStyleSwitcher({
+                target: document.documentElement,
+                key: 'site-theme',
+                defaultTheme: 'light',
+                themes: ['light', 'dark', 'retro', 'cyber'],
+            });
+        });
+    </script>
+</body>
+</html>
