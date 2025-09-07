@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="favicon.png" type="image/png">
-    <title>Style Switcher Demo</title>
+    <title>Headsets.dk</title>
 
     <!-- CSS files -->
     <link rel="stylesheet" href="css/themes.css">
@@ -255,7 +255,7 @@
         document.querySelectorAll('.alert-close').forEach(button => {
             // Remove any existing click handlers to prevent duplicates
             button.onclick = null;
-            
+
             // Add new click handler
             button.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -272,7 +272,7 @@
 
     // Initialize close buttons when DOM is loaded
     document.addEventListener('DOMContentLoaded', setupCloseButtons);
-    
+
     // Also set up close buttons after theme changes
     StyleSwitcher.onChange(setupCloseButtons);
     </script>
@@ -281,7 +281,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Initialize theme change counter
             let themeChangeCount = 0;
-            
+
             // Initialize the style switcher
             StyleSwitcher.initStyleSwitcher({
                 target: document.documentElement,
@@ -289,26 +289,26 @@
                 defaultTheme: 'light',
                 themes: ['light', 'dark', 'retro', 'cyber'],
             });
-            
+
             // Single event listener for theme changes
             StyleSwitcher.onChange(function(themeName) {
                 themeChangeCount++;
                 const alert = document.getElementById('themeAlert');
                 const alertMessage = document.getElementById('themeAlertMessage');
-                
+
                 if (alert && alertMessage) {
                     // Update the message with the current count
                     alertMessage.textContent = `Temaet er blevet skiftet ${themeChangeCount} gange`;
-                    
+
                     // Make sure alert is visible and stays visible
                     alert.style.display = 'block';
                     alert.style.opacity = '1';
-                    
+
                     // Log theme change for debugging
                     console.log(`Theme changed to: ${themeName}, Total changes: ${themeChangeCount}`);
                 }
             });
-            
+
             // Make sure the alert is visible on page load if not first visit
             const alert = document.getElementById('themeAlert');
             if (alert) {
